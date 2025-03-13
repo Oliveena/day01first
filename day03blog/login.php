@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+
+session_start();
 
 // debugging
 echo '<pre>';
@@ -26,8 +28,6 @@ echo '</pre>';
         <!--Start of PHP-->
         <?php
         require_once 'db.php';
-
-
 
         $email = isset($_POST['email']) ? $_POST['email'] : '';  //defining email variable
         $password = isset($_POST['password']) ? $_POST['password'] : '';  //defining password variable
@@ -82,8 +82,13 @@ END;
 
                     // comparing entered password with hashed password in DB
                     if (password_verify($password, $user['password'])) {
-                        echo "<p>Login Successful! Redirecting...</p>";
                         $_SESSION['name'] = $user['name'];
+                        $_SESSION['id'] = $user['id'];
+
+                        //debugging
+                        var_dump($_SESSION); 
+
+                        echo "<p>Login Successful! Redirecting...</p>";
                         header("Location: index.php");
                         exit();
                     } else {

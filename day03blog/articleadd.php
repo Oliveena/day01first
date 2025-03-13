@@ -2,6 +2,16 @@
 require_once 'db.php';
 
 session_start();
+//debugging
+var_dump($_SESSION);
+
+if (!isset($_SESSION['id'])) {
+    echo "Error: User is not logged in. Invalid user ID.";
+    //exit(); 
+}
+
+$authorId = $_SESSION['id'];
+
 // Check if the user is logged in
 if (!isset($_SESSION['name'])) {
     echo "<p style='color: red;'>You must be logged in to create an article!</p>";
@@ -13,6 +23,26 @@ if (!isset($_SESSION['name'])) {
 $title = isset($_POST['title']) ? $_POST['title'] : '';
 $body = isset($_POST['body']) ? $_POST['body'] : '';
 $errorList = [];
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Article</title>
+</head>
+
+<body>
+
+    <?php include('templates/header.php'); ?>
+
+    <h1>Create New Article</h1>
+
+
+<?php 
 
 function printForm($title = "", $body = "")
 {
@@ -58,6 +88,14 @@ if (!isset($_POST['submit'])) {
 
         $authorId = $_SESSION['id']; 
 
+        // does authorId exist in users table? 
+$sql = "SELECT * FROM users WHERE id = '$authorId'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) == 0) {
+    echo "Error: Invalid user ID.";
+    exit();
+}
+
         $title = mysqli_real_escape_string($conn, $title);
         $body = mysqli_real_escape_string($conn, $body);
 
@@ -89,20 +127,6 @@ mysqli_close($conn);
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Article</title>
-</head>
-
-<body>
-
-    <?php include('templates/header.php'); ?>
-
-    <h1>Create New Article</h1>
 
     <?php
 

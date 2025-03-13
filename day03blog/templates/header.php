@@ -1,10 +1,13 @@
 <?php
 
+//session_start();
+
 // Coolors used for color palette: https://coolors.co/palette/eae4e9-fff1e6-fde2e4-fad2e1-e2ece9-bee1e6-f0efeb-dfe7fd-cddafd 
 if ($_SERVER['QUERY_STRING'] == 'noname') {
-    //unset($_SESSION['name']);
-    session_unset();
+    unset($_SESSION['name']);
 }
+
+
 $name = $_SESSION['name'] ?? 'Guest';
 ?>
 
@@ -123,5 +126,6 @@ p a:hover {
                     <li class="nav-item"><a href="articleadd.php" class="btn">Write A Blog Post</a></li>
 
                 <?php endif; ?>
+
             </ul>
         </nav>
