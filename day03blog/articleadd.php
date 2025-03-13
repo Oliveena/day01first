@@ -3,7 +3,7 @@ require_once 'db.php';
 
 session_start();
 // Check if the user is logged in
-if (!isset($_SESSION['userId'])) {
+if (!isset($_SESSION['name'])) {
     echo "<p style='color: red;'>You must be logged in to create an article!</p>";
     echo '<button><a href="login.php">Already got an account? Log in.</a></button>';
     echo '<button><a href="registration.php">First timer? Register here.</a></button>';
@@ -55,7 +55,8 @@ if (!isset($_POST['submit'])) {
 
     // if no errors, move on to insertion into DB
     if (empty($errorList)) {
-        session_start();  // start session to access logged-in user's ID
+
+        $authorId = $_SESSION['id']; 
 
         $title = mysqli_real_escape_string($conn, $title);
         $body = mysqli_real_escape_string($conn, $body);
@@ -86,6 +87,8 @@ if (!isset($_POST['submit'])) {
 
 mysqli_close($conn);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
