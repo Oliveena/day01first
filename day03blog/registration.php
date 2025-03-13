@@ -9,7 +9,7 @@
 
 <body>
 
-    <!--TODO: add a header-->
+<?php include('templates/header.php'); ?>
 
     <h1>New User Registration</h1>
 
@@ -123,7 +123,7 @@ END;
     ?>
     <!--end of PHP-->
 
-    <!--TODO: add a footer-->
+    <?php include('templates/footer.php'); ?>
 
 </body>
 

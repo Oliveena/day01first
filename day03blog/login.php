@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <!--TODO: add a header-->
+
+<?php include('templates/header.php'); ?>
 
     <h1>User Login</h1>
     <h2>Welcome!</h2>
@@ -97,7 +98,8 @@ END;
         <!--End of PHP-->
 
     </section>
-    <!--TODO: add a footer-->
+    
+    <?php include('templates/footer.php'); ?>
 </body>
 
 </html>
