@@ -59,6 +59,9 @@ END;
         } else {
             if (empty($email)) {
                 $errorList[] = "Email is required.";
+                // TOD0: Dr. Greg suggests to split up the regex into separate smaller regexes 
+                // TODO: use sprintf
+                // TODO: add isusernametaken.php, as in video day04 
             } elseif (preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z]{2,})$/i', $email) !== 1) {
                 $errorList['email'] = "Email seems incorrect. Please try again.";
                 $email = "";  // reset email field

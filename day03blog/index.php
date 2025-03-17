@@ -51,7 +51,7 @@ $is_logged_in = isset($_SESSION['name']);
                     <h2><?php echo htmlspecialchars($article['title']); ?></h2>
                     <p><?php echo nl2br(htmlspecialchars(substr($article['body'], 0, 100))); ?>...</p>
                     <div class="article-action">
-                        <a href="details.php?id=<?php echo $article['id']; ?>" class="brand-text">More info</a>
+                        <a href="article.php?id=<?php echo $article['id']; ?>">More info</a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -61,3 +61,4 @@ $is_logged_in = isset($_SESSION['name']);
     <?php include('templates/footer.php'); ?>
 </body>
 </html>
+
